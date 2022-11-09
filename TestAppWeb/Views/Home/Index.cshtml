@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Hierarchy>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<body>
+    <div class="sidebar-heading border-bottom bg-light mb-2">
+        <span>Setup</span>
+        <span>User 1 | Organisation Name</span>
+
+    </div>
+    <div class="d-flex" id="wrapper">
+        <div class="border-end bg-white id="sidebar-wrapper">
+            
+            <div class="list-group list-group-flush selektiraj">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 clicked" href="#">Hierarchy and Terminologies</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 clicked" >Level 1</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 clicked" asp-controller="Home" asp-action="Plan">Action Plan</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 clicked" >Approval Process</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 clicked" >Notifications/Escalations</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 clicked" >Position</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 clicked" >Departments</a>
+            </div>
+        </div>
+        <div id="page-content-wrapper">
+            
+            <div class="container-fluid">
+                <table class="table table-bordered table-striped" style="width: 100%">
+                    <thead>
+                        <tr class="border border-light">
+                            <th width="50%">
+                                Hierarchy
+                            </th>
+                            <th width="50%">
+                                Description
+                            </th>
+                        </trstyle>
+                    </thead>
+                    <tbody>
+                        @foreach(var obj in Model)
+                        {
+                            <tr>
+                                <td width="50%">
+                                    <button type ="button" class=" btn rounded-3 add-new-client-btn modalClass" id="" data-bs-toggle="modal" data-bs-target="#myModal"> @obj.HierarchyName </button>
+                                </td>
+                                <td width="40%" readonly>
+                                    @obj.Description
+                                </td>
+                                <td width="10%">
+                                    <a class="eyeClass"><i class="bi bi-eye-fill" onclick="myFunction()"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <form>
+        <div class="modal" tabindex="-1" role="dialog" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+            
+                            <h5 class="modal-title text-start"> level name here  </h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label >Name</label> <br />
+                            <input rows="4" maxLength="255" onkeyup="numberOfCharacters('mytextbox',500,'characterLimit');"
+                                      name="contact_message" id="mytextbox"  required style="width:100%"></input>
+
+                            <div class="chars">
+                                <span id="characterLimit" style="padding-left:350px">500 characters</span>
+                            </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i>Close</button>
+                            <button type="button" class="btn btn-primary"><i class="bi bi-save"></i>Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+
+    </div> 
+     
+</body>
+
+
+
+
+
+
